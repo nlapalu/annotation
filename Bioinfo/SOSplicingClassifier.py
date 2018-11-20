@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-from EMOperators import EMOperators as EM
-
+from Bioinfo.EMOperators import EMOperators as EM
 
 class SOSplicingClassifier(object):
 
@@ -17,14 +16,11 @@ class SOSplicingClassifier(object):
         """
 
         classification=(0,0,0)
-        print(len(gene.lTranscripts))
         if len(gene.lTranscripts) > 0:
             for i,t1 in enumerate(gene.lTranscripts):
                 for t2 in gene.lTranscripts[i+1::]:
                     classification = tuple([sum(x) for x in zip(classification,SOSplicingClassifier.classify_pair_of_transcripts(t1,t2))])
-
         return classification
-
 
     @staticmethod
     def classify_pair_of_transcripts(t1, t2):
@@ -40,7 +36,13 @@ class SOSplicingClassifier(object):
 
         """
 
-        return (1,0,1)
+        if SOSplicingClassifier.are_transcripts_overlapping(t1, t2):
+            return (0,0,1)
+        elif SOSplicingClassifier.are_transcripts_parts_disjoint(t1, t2):
+            return (0,1,0)
+        else:
+            return (1,0,0)
+
 
     @staticmethod
     def are_transcripts_sequence_disjoint(t1, t2):
@@ -59,7 +61,7 @@ class SOSplicingClassifier(object):
            :rtype: bool
         """
 
-        return EM.disjoint(t1.lExons, t2.lExons)
+        return not EM.part_overlap(t1, t2)
 
     @staticmethod
     def are_transcripts_parts_disjoint(t1,t2):
@@ -68,7 +70,7 @@ class SOSplicingClassifier(object):
 
         """
 
-        return True
+        return EM.part_overlap(t1, t2)
 
     @staticmethod
     def are_transcripts_overlapping(t1,t2):
