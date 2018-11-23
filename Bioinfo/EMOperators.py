@@ -4,15 +4,23 @@
 class EMOperators(object):
 
     @staticmethod
-    def overlap(x, y):
+    def overlap(x, y, type):
         """
            x and y are overlapping if they share
            at least one part in common
         """
+        x_lparts = []
+        y_lparts = []
+        if type == 'exon':
+            x_lparts = x.lExons
+            y_lparts = y.lExons
+        if type == 'CDS':
+            x_lparts = x.lCDS
+            y_lparts = y.lCDS
 
         #overlap = False
-        for x_part in x.lExons:
-            for y_part in y.lExons:
+        for x_part in x_lparts:
+            for y_part in y_lparts:
                 if (x_part.start, x_part.end) == \
                    (y_part.start, y_part.end):
                     return True
@@ -32,15 +40,24 @@ class EMOperators(object):
         return not EMOperators.overlap(x, y)
 
     @staticmethod
-    def part_overlap(x, y):
+    def part_overlap(x, y, type):
         """
            x and y have part overlappping
            if at least one base is shared
            between 2 parts"
         """
 
-        for x_part in x.lExons:
-            for y_part in y.lExons:
+        x_lparts = []
+        y_lparts = []
+        if type == 'exon':
+            x_lparts = x.lExons
+            y_lparts = y.lExons
+        if type == 'CDS':
+            x_lparts = x.lCDS
+            y_lparts = y.lCDS
+
+        for x_part in x_lparts:
+            for y_part in y_lparts:
                 if EMOperators.__sequence_part_overlap(x_part, y_part):
                     return True
         return False

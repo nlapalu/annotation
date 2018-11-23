@@ -5,7 +5,7 @@ from Bioinfo.EMOperators import EMOperators as EM
 class SOSplicingClassifier(object):
 
     @staticmethod
-    def classify_gene(gene):
+    def classify_gene(gene, part_type='exon'):
         """
             classify transcripts of a gene
 
@@ -19,11 +19,11 @@ class SOSplicingClassifier(object):
         if len(gene.lTranscripts) > 0:
             for i,t1 in enumerate(gene.lTranscripts):
                 for t2 in gene.lTranscripts[i+1::]:
-                    classification = tuple([sum(x) for x in zip(classification,SOSplicingClassifier.classify_pair_of_transcripts(t1,t2))])
+                    classification = tuple([sum(x) for x in zip(classification,SOSplicingClassifier.classify_pair_of_transcripts(t1,t2,part_type))])
         return classification
 
     @staticmethod
-    def classify_pair_of_transcripts(t1, t2):
+    def classify_pair_of_transcripts(t1, t2, part_type):
         """
             classify 
 
@@ -36,16 +36,16 @@ class SOSplicingClassifier(object):
 
         """
 
-        if SOSplicingClassifier.are_transcripts_overlapping(t1, t2):
+        if SOSplicingClassifier.are_transcripts_overlapping(t1, t2, part_type):
             return (0,0,1)
-        elif SOSplicingClassifier.are_transcripts_parts_disjoint(t1, t2):
+        elif SOSplicingClassifier.are_transcripts_parts_disjoint(t1, t2, part_type):
             return (0,1,0)
         else:
             return (1,0,0)
 
 
     @staticmethod
-    def are_transcripts_sequence_disjoint(t1, t2):
+    def are_transcripts_sequence_disjoint(t1, t2, part_type):
         """
            Test if 2 transcripts are sequence disjoint
 
@@ -61,19 +61,19 @@ class SOSplicingClassifier(object):
            :rtype: bool
         """
 
-        return not EM.part_overlap(t1, t2)
+        return not EM.part_overlap(t1, t2, type=part_type)
 
     @staticmethod
-    def are_transcripts_parts_disjoint(t1,t2):
+    def are_transcripts_parts_disjoint(t1,t2, part_type):
         """
             todo
 
         """
 
-        return EM.part_overlap(t1, t2)
+        return EM.part_overlap(t1, t2, type=part_type)
 
     @staticmethod
-    def are_transcripts_overlapping(t1,t2):
+    def are_transcripts_overlapping(t1,t2, part_type):
         """
            Test if 2 transcripts are overlapping 
 
@@ -82,4 +82,4 @@ class SOSplicingClassifier(object):
 
         """
 
-        return EM.overlap(t1, t2)
+        return EM.overlap(t1, t2, type=part_type)

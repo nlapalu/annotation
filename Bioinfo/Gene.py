@@ -10,6 +10,7 @@ class Gene(object):
         self.start = start
         self.end = end
         self.strand = strand
+        self.type = None
         self.lTranscripts = []
 
     def isOnReverseStrand(self):
@@ -24,6 +25,25 @@ class Gene(object):
         """add transcript"""
 
         self.lTranscripts.append(transcript)
+
+    def is_coding(self):
+
+        if self.type == "coding":
+            return True
+        else:
+            False
+
+    def get_min_cds_start(self):
+
+        return min([tr.get_min_cds_start() for tr in self.lTranscripts])
+
+    def get_max_cds_end(self):
+
+        return max([tr.get_max_cds_end() for tr in self.lTranscripts])
+
+    def __hash__(self):
+
+        return hash(self.id)
 
     def __eq__(self, other):
         """Equality on all args"""

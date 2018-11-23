@@ -47,6 +47,15 @@ class Transcript(object):
 
         return sum([cds.end-cds.start+1 for cds in self.lCDS])
 
+    def get_min_cds_start(self):
+
+        return min([cds.start for cds in self.lCDS])
+
+    def get_max_cds_end(self):
+
+        return max([cds.end for cds in self.lCDS])
+
+
     def __eq__(self, other):
         """Equality on all args"""
       
