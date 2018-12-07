@@ -13,9 +13,7 @@ As described above, this classification is based on exon boundaries,
 that could be highly problematic for de-novo annotations with poorly
 defined UTR parts. To avoid such problem, you can choose to perform
 the same classification based on CDS coordinates. In this case you 
-will obtained less biased results. In the same way, you can choose
-to take into account the strand of features, that will help you to 
-resolve conflict between genes and possible non-coding RNA. We tried
+will obtained less biased results.  We tried
 to summarize the pro and cons of classification feature type in
 the following table.
 
@@ -36,7 +34,7 @@ the pros/cons of these options.
 |:--:|--|--|
 |`--clu-type gene`|||
 |`--clu-type cds`|||
-|`--clu-type gene` `--clu-stranded`|||
+|`--clu-type gene` `--clu-stranded`|resolve conflict between genes and possible non-coding RNA on the opposite strand|will not detect severe problem due to divergent prediction on opposite strand|
 |`--clu-type cds` `--clu-stranded`|||
 
 
