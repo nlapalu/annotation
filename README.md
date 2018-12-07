@@ -40,24 +40,13 @@ the pros/cons of these options.
 |`--clu-type cds` `--clu-stranded`|||
 
 
-
-## Inspect a simple gene annotation
-
-## Compare a reference annotation to a new annotation
-
-## Inspect several gene annotations
-
-QUID quand un gene dans 2 annot sur 3 et code O:O:N -> faire analyse en plus de l'annot (keep trace source annot !!!) 
-
-
 ## Validate your GFF/GTF file format
 
 Despite the efforts made to propose common format with rules/constraints,
 GFF/GTF format are permissive and contents could be misunderstood 
 during file parsing.
 
-We propose a simple validator to ensure that your annotation file format
-is supported by our program.
+We propose a simple validator to ensure that INGENANNOT supports your annotation file format
 
 ```
 ingenannot validate myfile.gff
@@ -66,6 +55,17 @@ ingenannot validate myfile.gff
 In case of failure, check your file to fix the missing or required data.
 If you need help, or required a specific parser for your 'exotic' format, 
 feel free to contact us.     
+
+
+## Inspect a simple gene annotation
+
+## Compare a reference annotation to a new annotation
+
+## Inspect several gene annotations
+
+<!--
+QUID quand un gene dans 2 annot sur 3 et code O:O:N -> faire analyse en plus de l'annot (keep trace source annot !!!) 
+-->
 
 <!--
 ################### reflexion
