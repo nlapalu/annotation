@@ -22,14 +22,14 @@ the following table.
 ||pros|cons|
 |:--:|--|--|
 |`--cla-type gene`|complete gene structure analysis|too sensitive in case of divergent set of annotations|
-|`--cla-type cds`|limited to coding sequence, avoid background noise due to UTR. Usefull in case of poorly predicted UTR.|structure inspection limited to cds|
+|`--cla-type cds`|limited to coding sequence, avoid background noise due to UTRs. Usefull in case of poorly predicted UTRs.|structure inspection limited to cds|
 
 As mentionned above, INGENANNOT can handle multiple gffs from different
 sources. In case of several annotations, gene boundaries are often divergent
 (especially if you tried to predict UTR regions), that implies to
 clusterize genes, to propose new loci sharing a list of transcripts.
 We define these new loci as 'meta-gene' and propose several options
-to clusterize them. As previously done for classifiction, you will find below
+to clusterize them. As previously done for classification, you will find below
 the pros/cons of these options.  
 
 ||pros|cons|
@@ -53,7 +53,7 @@ ingenannot validate myfile.gff
 ```
 
 In case of failure, check your file to fix the missing or required data.
-If you need help, or required a specific parser for your 'exotic' format, 
+If you need help, or required a parser for your specific format, 
 feel free to contact us.     
 
 
