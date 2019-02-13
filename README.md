@@ -38,6 +38,17 @@ the pros/cons of these options.
 |`--clu-type cds` `--clu-stranded`|||
 
 
+INGENNANOT provides a re-implementation of several metrics used by
+different softwares to score gene annotations.
+
+### Annotation Edit Distance (AED)
+
+### Splicing complexity
+
+### Evidence score
+ 
+
+
 ## Validate your GFF/GTF file format
 
 Despite the efforts made to propose common format with rules/constraints,
@@ -45,6 +56,7 @@ GFF/GTF format are permissive and contents could be misunderstood
 during file parsing.
 
 We propose a simple validator to ensure that INGENANNOT supports your annotation file format
+
 
 ```
 ingenannot validate myfile.gff
@@ -57,9 +69,20 @@ feel free to contact us.
 
 ## Inspect a simple gene annotation
 
+## Inspect several gene annotations
+
 ## Compare a reference annotation to a new annotation
 
-## Inspect several gene annotations
+## Inspect and filter annotations to propose a new set
+
+```
+ingenannot inspect myfof.txt
+```
+
+Here we propose a sequence of filters to merge several source of annotations
+in a more robust one. 
+
+Filters are based on previous published filters
 
 <!--
 QUID quand un gene dans 2 annot sur 3 et code O:O:N -> faire analyse en plus de l'annot (keep trace source annot !!!) 
@@ -74,6 +97,38 @@ QUID quand un gene dans 2 annot sur 3 et code O:O:N -> faire analyse en plus de 
 #
 #
 -->
+
+## Usage and options
+
+### validate
+
+### inspect
+
+#### Usage:
+
+`ingenannot ...`
+
+or
+
+`ingenannot inspect ...`
+
+#### Arguments:
+
+| Argument | Description |
+| --------- | ----------- |
+| `BamFile` | mapping file in bam format, sorted and indexed |
+| `AnnotFile` | annotation file in gff3 format |
+
+
+### Options:
+
+| Option | Description |
+| ------ | ----------- |
+| `-t, --featType` | Feature type choice for counts [exon,cds], default=exon |
+| `-m, --minNbFrags` | Minimum number of fragment per trancript to compute mean fragment length, [default=3] |
+|
+
+
 
 ## References
 
